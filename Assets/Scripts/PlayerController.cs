@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-
+    public Transform bulletPrefab;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     {
 	    if(Input.GetKeyDown(KeyCode.Space))
         {
-            print("boom");
+            print("Boom");
         }
 	}
 }
