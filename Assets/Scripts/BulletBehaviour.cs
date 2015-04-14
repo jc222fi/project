@@ -13,7 +13,7 @@ public class BulletBehaviour : MonoBehaviour
 	void Start() 
     {
         //Limited life span
-        Destroy(gameObject, 7);
+        Destroy(gameObject, 5);
 	}
 
     void Update()

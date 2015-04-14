@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-    public Transform bulletPrefab;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
 	// Use this for initialization
 	void Start() 
     {
@@ -15,8 +16,7 @@ public class PlayerController : MonoBehaviour
     {
 	    if(Input.GetKeyDown(KeyCode.Space))
         {
-            var bulletClone = Instantiate(bulletPrefab) as Transform;
-            bulletClone.position = transform.position;
+            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             
             //Movement movement = bulletClone.gameObject.GetComponent<Movement>();
         }
