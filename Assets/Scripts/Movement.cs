@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour 
 {
 
-    public int speed;
+    public float speed;
     //public Vector2 speed = new Vector2(10, 10);
     //public Vector2 direction = new Vector2(1, 0);
 
@@ -12,13 +12,17 @@ public class Movement : MonoBehaviour
 	// Use this for initialization
 	void Start() 
     {
-        GetComponent<Rigidbody2D>().velocity = transform.forward * speed;
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
 	}
 	
-	// Update is called once per frame
-    //void Update () 
+	 //Update is called once per frame
+    //void Update()
     //{
-    //    movement = new Vector2(speed.x * direction.x, speed.y * direction.y);	
+    //    if (GetComponent<Rigidbody2D>() == GameObject.FindGameObjectWithTag("Enemy"))
+    //    {
+    //        GetComponent<Rigidbody2D>().AddForce(transform.forward * speed);
+    //        print(GetComponent<Rigidbody2D>());
+    //    }
     //}
     //void FixedUpdate()
     //{
