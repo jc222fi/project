@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public float step;
 	// Use this for initialization
 	void Start() 
     {
@@ -14,11 +15,26 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
     {
-	    if(Input.GetKeyDown(KeyCode.Space))
+        Attack();
+        //float step = speed * Time.time;
+        
+        if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-            
-            //Movement movement = bulletClone.gameObject.GetComponent<Movement>();
+            transform.Rotate(Vector3.forward * -step);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.Rotate(Vector3.forward * step);
         }
 	}
+
+    void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+            //Movement movement = bulletClone.gameObject.GetComponent<Movement>();
+        }
+    }
 }
