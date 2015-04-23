@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using UnityEngine.UI;
 
 public class BulletBehaviour : MonoBehaviour 
 {
@@ -8,12 +10,12 @@ public class BulletBehaviour : MonoBehaviour
 
     //private Transform bulletSpawn;
 
-
 	// Use this for initialization
 	void Start() 
     {
         //Limited life span
         Destroy(gameObject, 5);
+        
 	}
 
     void Update()
