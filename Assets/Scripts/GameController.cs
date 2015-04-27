@@ -9,12 +9,15 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public Vector2 spawnValues;
     public int enemyCount;
+    public float spawnWait;
 
     private int score;
     // Use this for initialization
     void Start()
     {
-        EnemySpawn();
+        print(GameTimer());
+        StartCoroutine(GameTimer());
+        StartCoroutine(EnemySpawn());
         score = 0;
         UpdateScore();
     }
@@ -27,12 +30,18 @@ public class GameController : MonoBehaviour {
     {
         scoreText.text = "Score: " + score;
     }
-    void EnemySpawn()
+    IEnumerator EnemySpawn()
     {
-        for (int i = 0; i < enemyCount; i++)
+        while (true)
         {
             Vector2 spawnPosition = new Vector2(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y));
-            Instantiate(enemyPrefab, spawnPosition, enemySpawn.rotation); 
+            Instantiate(enemyPrefab, spawnPosition, enemySpawn.rotation);
+            yield return new WaitForSeconds(spawnWait);
         }
+    }
+    IEnumerator GameTimer()
+    {
+        yield return new WaitForSeconds(300);
+        Application.LoadLevel("gameover");
     }
 }
