@@ -8,14 +8,12 @@ public class GameController : MonoBehaviour {
     public Transform enemySpawn;
     public Text scoreText;
     public Vector2 spawnValues;
-    public int enemyCount;
-    public float spawnWait;
-
+    
+    private float spawnWait;
     private int score;
     // Use this for initialization
     void Start()
     {
-        print(GameTimer());
         StartCoroutine(GameTimer());
         StartCoroutine(EnemySpawn());
         score = 0;
@@ -36,12 +34,14 @@ public class GameController : MonoBehaviour {
         {
             Vector2 spawnPosition = new Vector2(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y));
             Instantiate(enemyPrefab, spawnPosition, enemySpawn.rotation);
+            spawnWait = Random.Range(1, 3);
             yield return new WaitForSeconds(spawnWait);
         }
     }
     IEnumerator GameTimer()
     {
-        yield return new WaitForSeconds(300);
+        yield return new WaitForSeconds(210);
+        PlayerPrefs.SetInt("Player Score", score);
         Application.LoadLevel("gameover");
     }
 }
