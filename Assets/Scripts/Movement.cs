@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour
 	void Start() 
     {
         GetComponent<Rigidbody2D>().velocity = transform.right * speed;
-        Destroy(gameObject, 5);
 	}
 
 	 //Update is called once per frame

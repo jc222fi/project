@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float step;
 
     private bool canFire = true;
-    private float coolDown = 0.7f;
+    private float coolDown = 0.5f;
 	// Use this for initialization
 	void Start() 
     {
@@ -24,14 +24,19 @@ public class PlayerController : MonoBehaviour
         }
         //float step = speed * Time.time;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //transform.rotation = Quaternion.AngleAxis(5, Vector3.down);
-            transform.Rotate(Vector3.forward * -step);
+            if (true)//(transform.rotation.z >-1 || (transform.rotation.z <=350 && transform.rotation.z >= 280))
+            {
+                transform.Rotate(Vector3.forward * -step); 
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.Rotate(Vector3.forward * step);
+            if (true)//(transform.rotation.z >-1 || (transform.rotation.z <=350 && transform.rotation.z >= 280))
+            {
+                transform.Rotate(Vector3.forward * step); 
+            }
         } 
 	}
 

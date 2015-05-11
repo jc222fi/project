@@ -6,6 +6,7 @@ public class NewGame : MonoBehaviour {
 	public void ButtonClickedEvent()
     {
         PlayerPrefs.SetInt("Player Score", 0);
+        PlayerPrefs.SetInt("Invalid Shots", 0);
         Application.LoadLevel("GooseChase");
     }
 }

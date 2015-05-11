@@ -17,8 +17,11 @@ public class DestroyOnImpact : MonoBehaviour {
     }
 	void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject);
-        Destroy(gameObject);
-        gameController.AddScore(scoreValue);
+        if ((gameObject.CompareTag("Enemy") || gameObject.CompareTag("Enemy2")) && other.gameObject.CompareTag("Player"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            gameController.AddScore(scoreValue);
+        }
     }
 }
