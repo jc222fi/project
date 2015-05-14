@@ -16,7 +16,7 @@ public class GameScore : MonoBehaviour {
         totalInvalidShots = PlayerPrefs.GetInt("Invalid Shots");
         totalScore = PlayerPrefs.GetInt("Player Score");
         print(totalInvalidShots);
-        if(totalInvalidShots!=5)
+        if(totalInvalidShots<5)
         {
             gameOverText.text = "Congratulations!";
             totalScoreText.text = "Your total score: " + totalScore;

@@ -76,6 +76,13 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(30);
         PlayerPrefs.SetInt("Player Score", score);
         PlayerPrefs.SetInt("Invalid Shots", invalidShots);
-        Application.LoadLevel("gameover");
+        if (score > 10)
+        {
+            Application.LoadLevel("Bonus");
+        }
+        else
+        {
+            Application.LoadLevel("gameover"); 
+        }
     }
 }
