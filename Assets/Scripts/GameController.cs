@@ -73,10 +73,10 @@ public class GameController : MonoBehaviour {
     }
     IEnumerator GameTimer()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(210);
         PlayerPrefs.SetInt("Player Score", score);
         PlayerPrefs.SetInt("Invalid Shots", invalidShots);
-        if (score > 10)
+        if (score > 10000)
         {
             Application.LoadLevel("Bonus");
         }
