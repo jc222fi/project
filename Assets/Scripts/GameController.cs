@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
     public Text commentText;
     public Text numberOfInvalidShots;
     public Vector2 spawnValues;
-    
+
     private float spawnWait;
     private int score;
     private int invalidShots;
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(210);
         PlayerPrefs.SetInt("Player Score", score);
         PlayerPrefs.SetInt("Invalid Shots", invalidShots);
-        if (score > 10000)
+        if (score > 1000)
         {
             Application.LoadLevel("Bonus");
         }

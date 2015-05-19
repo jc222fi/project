@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour
     public Transform bulletSpawn;
     public float step;
 
+    private AudioSource audio;
     private bool canFire = true;
     private float coolDown = 0.5f;
 	// Use this for initialization
 	void Start() 
     {
-        
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             canFire = false;
+            audio.Play();
 
             yield return new WaitForSeconds(coolDown);
             canFire = true; 
