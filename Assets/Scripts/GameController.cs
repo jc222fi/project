@@ -16,29 +16,26 @@ public class GameController : MonoBehaviour {
     private int score;
     private int invalidShots;
     private string[] comments = new string[] { "No birds there", "Are you stupid?", "Sucker", "You're gonna lose", "LOSER" };
-    // Use this for initialization
     void Start()
     {
-        StartCoroutine(GameTimer());
+        //At the start of the game, start spawning enemies
         StartCoroutine(EnemySpawn());
         StartCoroutine(EnemySpawn2());
         score = 0;
         UpdateScore();
     }
+    //Update score and misses, depending on if the enemy is hit by a bullet or makes it across the field unharmed
     public void AddScore(int newScoreValue)
     {
         score += newScoreValue;
         UpdateScore();
+        PlayerPrefs.SetInt("Player Score", score);
     }
     public void AddMiss(int newInvalidShot)
     {
         invalidShots += newInvalidShot;
         StartCoroutine(UpdateMiss());
-        if (invalidShots==5)
-        {
-            PlayerPrefs.SetInt("Invalid Shots", invalidShots);
-            Application.LoadLevel("gameover");
-        }
+        PlayerPrefs.SetInt("Invalid Shots", invalidShots);
     }
     void UpdateScore()
     {
@@ -50,7 +47,13 @@ public class GameController : MonoBehaviour {
         numberOfInvalidShots.text = "Invalid Shots: " + invalidShots;
         yield return new WaitForSeconds(2);
         commentText.text = "";
+        //If you shoot too far to the right or the bottom 5 times, game over
+        if (invalidShots == 5)
+        {
+            Application.LoadLevel("gameover");
+        }
     }
+    //Two spawnmethods so they will act independently spawning the clones
     IEnumerator EnemySpawn()
     {
         while (true)
@@ -69,20 +72,6 @@ public class GameController : MonoBehaviour {
             Instantiate(enemyPrefab2, spawnPosition, enemySpawn.rotation);
             spawnWait = Random.Range(1, 5);
             yield return new WaitForSeconds(spawnWait);
-        }
-    }
-    IEnumerator GameTimer()
-    {
-        yield return new WaitForSeconds(210);
-        PlayerPrefs.SetInt("Player Score", score);
-        PlayerPrefs.SetInt("Invalid Shots", invalidShots);
-        if (score > 1000)
-        {
-            Application.LoadLevel("Bonus");
-        }
-        else
-        {
-            Application.LoadLevel("gameover"); 
         }
     }
 }

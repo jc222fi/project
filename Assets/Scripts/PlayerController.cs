@@ -9,40 +9,32 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource audio;
     private bool canFire = true;
-    private float coolDown = 0.5f;
-	// Use this for initialization
+    private float coolDown = 0.75f;
+    //Initializing soundclip for the gun
 	void Start() 
     {
         audio = GetComponent<AudioSource>();
 	}
-	
-	// Update is called once per frame
 	void Update() 
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Attack());
         }
-        //float step = speed * Time.time;
-
+        //If the player presses Down or Right arrow the player moves the specified amount of steps to the right/down OR left/up on the Left or Up arrow
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (true)//(transform.rotation.z >-1 || (transform.rotation.z <=350 && transform.rotation.z >= 280))
-            {
-                transform.Rotate(Vector3.forward * -step); 
-            }
+            transform.Rotate(Vector3.forward * -step);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (true)//(transform.rotation.z >-1 || (transform.rotation.z <=350 && transform.rotation.z >= 280))
-            {
-                transform.Rotate(Vector3.forward * step); 
-            }
+            transform.Rotate(Vector3.forward * step);
         } 
 	}
 
     IEnumerator Attack()
     {
+        //Bool canFire is changed with the cool-down for reloading the gun, adjusted for the reload on the soundclip for the gun
         if (canFire)
         {
             Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
@@ -52,7 +44,5 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(coolDown);
             canFire = true; 
         }
-        //Movement movement = bulletClone.gameObject.GetComponent<Movement>();
-        
     }
 }

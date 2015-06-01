@@ -2,12 +2,11 @@
 using System.Collections;
 
 public class Misses : MonoBehaviour {
-
+    //This script records your misses and sends info to game controller
     public int scoreValue;
 
     private int invalidShot = 1;
     private GameController gameController;
-	// Use this for initialization
 	void Start () 
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameController");
@@ -17,20 +16,16 @@ public class Misses : MonoBehaviour {
             gameController = gameObject.GetComponent<GameController>();
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
     void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject);
         if (other.gameObject.CompareTag("Enemy")||other.gameObject.CompareTag("Enemy2"))
         {
-            gameController.AddScore(scoreValue); 
+            gameController.AddScore(scoreValue);
+            Destroy(other.gameObject);
         }
-        else //if (other.gameObject.CompareTag("Player"))
+        else if (other.gameObject.CompareTag("Bullet"))
         {
+            Destroy(other.gameObject);
             gameController.AddMiss(invalidShot);
         }
     }
